@@ -1,3 +1,4 @@
+"""The player pilots a spaceship to fight the alien invasion."""
 import pygame
 
 class Ship:
