@@ -90,9 +90,8 @@ class AlienInvasion:
             self.play_button.rect.collidepoint(mouse_pos)
             self.stats.reset_stats()
             self.stats.game_active = True
-            self.sb.prep_score()
-            self.sb.prep_level()
-            self.sb.prep_ships()
+
+            self.sb.prep_images()
 
             self.aliens.empty()
             self.bullets.empty()
