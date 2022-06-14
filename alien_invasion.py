@@ -50,6 +50,20 @@ class AlienInvasion:
 
             self._update_screen()
 
+    def start_game(self):
+        self.settings.initialize_dynamic_settings()
+        self.stats.reset_stats()
+        self.stats.game_active = True
+
+        self.sb.prep_images()
+
+        self.aliens.empty()
+        self.bullets.empty()
+
+        self._create_fleet()
+        self.ship.center_ship()
+        pygame.mouse.set_visible(False)
+
     def _check_events(self):
         """Respond to keyboard and mouse events."""
         for event in pygame.event.get():
@@ -73,6 +87,8 @@ class AlienInvasion:
             sys.exit()
         elif event.key == pygame.K_SPACE:
             self._fire_bullet()
+        elif event.key != pygame.K_q and not self.stats.game_active:
+            self.start_game()
 
     def _check_keyup_events(self, event):
         """Respond to keyup events."""
@@ -86,19 +102,8 @@ class AlienInvasion:
         button_clicked = self.play_button.rect.collidepoint(mouse_pos)
 
         if button_clicked and not self.stats.game_active:
-            self.settings.initialize_dynamic_settings()
             self.play_button.rect.collidepoint(mouse_pos)
-            self.stats.reset_stats()
-            self.stats.game_active = True
-
-            self.sb.prep_images()
-
-            self.aliens.empty()
-            self.bullets.empty()
-
-            self._create_fleet()
-            self.ship.center_ship()
-            pygame.mouse.set_visible(False)
+            self.start_game()
 
     def _update_bullets(self):
         """Update the position of bullets and remove old bullets."""
