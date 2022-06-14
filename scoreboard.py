@@ -1,8 +1,10 @@
 """Implement scoring and high scores."""
 import pygame.font
 from pygame.sprite import Group
+import json
 
 from ship import Ship
+
 
 class Scoreboard:
     """Report scoring information."""
@@ -74,5 +76,12 @@ class Scoreboard:
         """Check to see if there's a new high score."""
         if self.stats.score > self.stats.high_score:
             self.stats.high_score = self.stats.score
-            self.prep_high_score()
+            high_score_leaderboard = 'data/high_scores.json'
 
+            try:
+                with open(high_score_leaderboard, 'w', encoding='utf-8') as hs:
+                    json.dump(self.stats.score, hs)
+            except:
+                pass
+
+            self.prep_high_score()

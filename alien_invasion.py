@@ -11,6 +11,7 @@ from ship import Ship
 from bullet import Bullet
 from alien import Alien
 
+
 class AlienInvasion:
     """Container class to manage game assets and behavior."""
 
@@ -25,7 +26,7 @@ class AlienInvasion:
         # self.settings.screen_height = self.screen.get_rect().height
 
         self.screen = pygame.display.set_mode((self.settings.screen_width,
-            self.settings.screen_height))
+                                               self.settings.screen_height))
         pygame.display.set_caption('Alien Invasion!')
 
         self.stats = GameStats(self)
@@ -68,6 +69,7 @@ class AlienInvasion:
         """Respond to keyboard and mouse events."""
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
+
                 sys.exit()
             elif event.type == pygame.KEYDOWN:
                 self._check_keydown_events(event)
@@ -98,7 +100,7 @@ class AlienInvasion:
             self.ship.moving_left = False
 
     def _check_play_button(self, mouse_pos):
-        """Start a new game whtn the player clicks Play."""
+        """Start a new game when the player clicks Play."""
         button_clicked = self.play_button.rect.collidepoint(mouse_pos)
 
         if button_clicked and not self.stats.game_active:
@@ -114,9 +116,9 @@ class AlienInvasion:
             if bullet.rect.bottom <= 0:
                 self.bullets.remove(bullet)
 
-        self._check_bullet_allien_collisions()
+        self._check_bullet_alien_collisions()
 
-    def _check_bullet_allien_collisions(self):
+    def _check_bullet_alien_collisions(self):
         """Respond to bullet/alien collisions."""
         # Check for collisions and remove affected elements.
         collisions = pygame.sprite.groupcollide(self.bullets, self.aliens, True, True)
@@ -191,7 +193,7 @@ class AlienInvasion:
                 break
 
     def _change_fleet_direction(self):
-        """Drop the entire fleet down an change direction."""
+        """Drop the entire fleet down and change direction."""
         for alien in self.aliens.sprites():
             alien.rect.y += self.settings.fleet_drop_speed
 
@@ -236,6 +238,7 @@ class AlienInvasion:
         if len(self.bullets) < self.settings.bullets_allowed:
             new_bullet = Bullet(self)
             self.bullets.add(new_bullet)
+
 
 if __name__ == '__main__':
     ai = AlienInvasion()
