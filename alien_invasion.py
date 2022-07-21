@@ -57,6 +57,8 @@ class AlienInvasion:
         self.stats.game_active = True
 
         self.sb.prep_images()
+        pygame.mixer.music.load('sounds/background.wav')
+        pygame.mixer.music.play(-1)
 
         self.aliens.empty()
         self.bullets.empty()
@@ -120,12 +122,14 @@ class AlienInvasion:
 
     def _check_bullet_alien_collisions(self):
         """Respond to bullet/alien collisions."""
+        alien_hit_sound_effect = pygame.mixer.Sound('sounds/alien-hit.wav')
         # Check for collisions and remove affected elements.
         collisions = pygame.sprite.groupcollide(self.bullets, self.aliens, True, True)
 
         if collisions:
             for aliens in collisions.values():
                 self.stats.score += self.settings.alien_points * len(aliens)
+                alien_hit_sound_effect.play()
 
             self.sb.prep_score()
             self.sb.check_high_score()
@@ -202,8 +206,11 @@ class AlienInvasion:
 
     def _ship_hit(self):
         """Respond to aliens hitting the ship."""
+        ship_hit_sound_effect = pygame.mixer.Sound('sounds/ship-explosion.wav')
         if self.stats.ships_left > 0:
             self.stats.ships_left -= 1
+            ship_hit_sound_effect.play()
+
             self.sb.prep_ships()
 
             self.aliens.empty()
@@ -215,6 +222,7 @@ class AlienInvasion:
             sleep(0.5)
         else:
             self.stats.game_active = False
+            pygame.mixer.music.stop()
             pygame.mouse.set_visible(True)
 
     def _update_screen(self):
