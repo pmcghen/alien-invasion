@@ -129,6 +129,7 @@ class AlienInvasion:
 
             self.sb.prep_score()
             self.sb.check_high_score()
+            self.sb.check_extra_life_award()
 
         if not self.aliens:
             # Destroy remaining bullets and create new fleet

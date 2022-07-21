@@ -2,6 +2,7 @@
 import pygame.font
 from pygame.sprite import Group
 import json
+import math
 
 from ship import Ship
 
@@ -64,6 +65,15 @@ class Scoreboard:
             ship.rect.x = (self.level_rect.right + 10) + ship_number * ship.rect.width
             ship.rect.y = 10
             self.ships.add(ship)
+
+    def check_extra_life_award(self):
+        """If the player reaches the extra life threshold, add to their available ships."""
+        current_bonus = math.floor(self.stats.score / self.settings.extra_life_award)
+
+        if current_bonus > self.stats.extra_lives_awarded:
+            self.stats.ships_left += 1
+            self.stats.extra_lives_awarded += 1
+            self.prep_ships()
 
     def show_score(self):
         """Draw the score to the screen."""

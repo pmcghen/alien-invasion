@@ -2,6 +2,7 @@
 import pygame
 from pygame.sprite import Sprite
 
+
 class Alien(Sprite):
     """A single alien in the fleet."""
 
@@ -37,4 +38,3 @@ class Alien(Sprite):
             self.image = self.alt_image
         else:
             self.image = self.main_image
-

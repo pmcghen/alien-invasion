@@ -10,6 +10,7 @@ class GameStats:
         self.reset_stats()
         self.game_active = False
         self.high_score = 0
+        self.extra_lives_awarded = 0
 
         high_score_leaderboard = 'data/high_scores.json'
 

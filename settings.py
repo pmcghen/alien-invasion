@@ -6,19 +6,21 @@ class Settings:
         """Initialize the game's static settings."""
         self.screen_width = 800
         self.screen_height = 600
-        self.bg_color = (33,26,33)
+        self.bg_color = (33, 26, 33)
 
         self.ship_limit = 3
 
         self.bullet_width = 3
         self.bullet_height = 15
-        self.bullet_color = (66,66,66)
+        self.bullet_color = (66, 66, 66)
         self.bullets_allowed = 5
 
         self.fleet_drop_speed = 10
 
         self.speedup_scale = 1.1
         self.score_scale = 1.5
+
+        self.extra_life_award = 10000
 
         self.initialize_dynamic_settings()
 
