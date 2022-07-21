@@ -207,6 +207,7 @@ class AlienInvasion:
     def _ship_hit(self):
         """Respond to aliens hitting the ship."""
         ship_hit_sound_effect = pygame.mixer.Sound('sounds/ship-explosion.wav')
+        last_ship_hit_sound_effect = pygame.mixer.Sound('sounds/game-over.wav')
         if self.stats.ships_left > 0:
             self.stats.ships_left -= 1
             ship_hit_sound_effect.play()
@@ -221,6 +222,7 @@ class AlienInvasion:
 
             sleep(0.5)
         else:
+            last_ship_hit_sound_effect.play()
             self.stats.game_active = False
             pygame.mixer.music.stop()
             pygame.mouse.set_visible(True)
