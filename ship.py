@@ -14,6 +14,7 @@ class Ship(Sprite):
         self.screen_rect = ai_game.screen.get_rect()
 
         self.image = pygame.image.load('images/spaceship.png')
+        self.image_small = pygame.image.load('images/spaceship-small.png')
         self.rect = self.image.get_rect()
         self.rect.midbottom = self.screen_rect.midbottom
 
