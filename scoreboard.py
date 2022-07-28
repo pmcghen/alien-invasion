@@ -10,7 +10,7 @@ from ship import Ship
 class Scoreboard:
     """Report scoring information."""
     def __init__(self, ai_game):
-        """Initialize scorekeeping attributes."""
+        """Initialize score keeping attributes."""
         self.ai_game = ai_game
         self.screen = ai_game.screen
         self.screen_rect = self.screen.get_rect()
@@ -94,6 +94,7 @@ class Scoreboard:
                 with open(high_score_leaderboard, 'w', encoding='utf-8') as hs:
                     json.dump(self.stats.score, hs)
             except:
+                # TODO: Proper error handling is needed here.
                 pass
 
             self.prep_high_score()

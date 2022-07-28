@@ -1,6 +1,7 @@
 """Keep track of game events."""
 import json
 
+
 class GameStats:
     """Track statistics for Alien Invasion."""
 
@@ -14,13 +15,9 @@ class GameStats:
 
         high_score_leaderboard = 'data/high_scores.json'
 
-        try:
-            with open(high_score_leaderboard, encoding='utf-8') as hs:
-                high_score = json.load(hs)
-                self.high_score = high_score
-
-        except FileNotFoundError:
-            pass
+        with open(high_score_leaderboard, encoding='utf-8') as hs:
+            high_score = json.load(hs)
+            self.high_score = high_score
 
     def reset_stats(self):
         """Initialize the statistics that can change during the game."""
