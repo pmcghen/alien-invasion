@@ -229,7 +229,7 @@ class AlienInvasion:
 
     def _update_screen(self):
         """Update the screen."""
-        self.screen.fill(self.settings.bg_color)
+        self.screen.blit(self.settings.bg_img, (0, 0))
         self.ship.blitme()
 
         for bullet in self.bullets.sprites():

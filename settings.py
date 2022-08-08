@@ -1,4 +1,5 @@
 """Gameplay and asset settings for Alien Invasion."""
+import pygame
 
 
 class Settings:
@@ -8,7 +9,8 @@ class Settings:
         """Initialize the game's static settings."""
         self.screen_width = 800
         self.screen_height = 600
-        self.bg_color = (33, 26, 33)
+        self.bg_color = (0, 0, 0)
+        self.bg_img = pygame.image.load('images/bg.png')
 
         self.ship_limit = 3
 
