@@ -16,6 +16,7 @@ class Scoreboard:
         self.screen_rect = self.screen.get_rect()
         self.settings = ai_game.settings
         self.stats = ai_game.stats
+        self.new_high_score_set = False
 
         self.text_color = (233, 233, 233)
         self.font = pygame.font.SysFont(None, 24)
@@ -91,6 +92,11 @@ class Scoreboard:
         if self.stats.score > self.stats.high_score:
             self.stats.high_score = self.stats.score
             high_score_leaderboard = 'data/high_scores.json'
+
+            if not self.new_high_score_set:
+                new_high_score_sound_effect = pygame.mixer.Sound('sounds/high-score.wav')
+                self.new_high_score_set = True
+                new_high_score_sound_effect.play()
 
             try:
                 with open(high_score_leaderboard, 'w', encoding='utf-8') as hs:
