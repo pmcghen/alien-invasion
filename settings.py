@@ -25,6 +25,7 @@ class Settings:
         self.score_scale = 1.5
 
         self.extra_life_award = 10000
+        self.extra_life_scale = 1.5
 
         self.initialize_dynamic_settings()
 

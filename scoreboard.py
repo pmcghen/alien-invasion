@@ -75,6 +75,7 @@ class Scoreboard:
         if current_bonus > self.stats.extra_lives_awarded:
             self.stats.ships_left += 1
             self.stats.extra_lives_awarded += 1
+            self.settings.extra_life_award = self.settings.extra_life_award * self.settings.extra_life_scale
             self.prep_ships()
             bonus_sound_effect.play()
 
