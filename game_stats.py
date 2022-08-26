@@ -9,6 +9,7 @@ class GameStats:
         """Initialize statistics."""
         self.settings = ai_game.settings
         self.reset_stats()
+        self.first_run = True
         self.game_active = False
         self.game_over = False
         self.high_score = 0

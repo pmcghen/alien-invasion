@@ -50,6 +50,8 @@ class AlienInvasion:
         self.settings.initialize_dynamic_settings()
         self.stats.reset_stats()
         self.stats.game_active = True
+        self.stats.first_run = False
+        self.stats.game_over = False
 
         self.sb.prep_images()
         pygame.mixer.music.load('sounds/background.wav')
@@ -237,6 +239,10 @@ class AlienInvasion:
         self.aliens.draw(self.screen)
 
         self.sb.show_score()
+
+        if self.stats.first_run:
+            title_img = pygame.image.load('images/title.png')
+            self.screen.blit(title_img, (100, 80))
 
         if self.stats.game_over:
             font = pygame.font.SysFont("Pixeboy", 54)
