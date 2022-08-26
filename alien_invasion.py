@@ -67,6 +67,7 @@ class AlienInvasion:
 
         last_ship_hit_sound_effect.play()
         self.stats.game_active = False
+        self.stats.game_over = True
         pygame.mixer.music.stop()
         pygame.mouse.set_visible(True)
 
@@ -236,6 +237,11 @@ class AlienInvasion:
         self.aliens.draw(self.screen)
 
         self.sb.show_score()
+
+        if self.stats.game_over:
+            font = pygame.font.SysFont("Pixeboy", 54)
+            game_over_msg = font.render('GAME OVER', True, (255, 255, 255))
+            self.screen.blit(game_over_msg, (296, 230))
 
         if not self.stats.game_active:
             self.play_button.draw_button()

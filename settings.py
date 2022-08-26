@@ -12,7 +12,7 @@ class Settings:
         self.bg_color = (0, 0, 0)
         self.bg_img = pygame.image.load('images/bg.png')
 
-        self.ship_limit = 3
+        self.ship_limit = 2
 
         self.bullet_width = 3
         self.bullet_height = 15
