@@ -1,8 +1,8 @@
 """Alien Invasion is a Space Invaders clone written in Python."""
 import sys
-from time import sleep
 import pygame
 
+from time import sleep
 from settings import Settings
 from game_stats import GameStats
 from scoreboard import Scoreboard
@@ -20,11 +20,6 @@ class AlienInvasion:
         pygame.init()
         self.settings = Settings()
 
-        # Fullscreen mode
-        # self.screen = pygame.display.set_mode((0,0), pygame.FULLSCREEN)
-        # self.settings.screen_width = self.screen.get_rect().width
-        # self.settings.screen_height = self.screen.get_rect().height
-
         self.screen = pygame.display.set_mode((self.settings.screen_width,
                                                self.settings.screen_height))
         pygame.display.set_caption('Alien Invasion!')
@@ -37,7 +32,7 @@ class AlienInvasion:
         self.aliens = pygame.sprite.Group()
         self._create_fleet()
 
-        self.play_button = Button(self, 'Play')
+        self.play_button = Button(self, 'PLAY')
 
     def run_game(self):
         """Start the main loop."""
@@ -67,11 +62,18 @@ class AlienInvasion:
         self.ship.center_ship()
         pygame.mouse.set_visible(False)
 
+    def end_game(self):
+        last_ship_hit_sound_effect = pygame.mixer.Sound('sounds/game-over.wav')
+
+        last_ship_hit_sound_effect.play()
+        self.stats.game_active = False
+        pygame.mixer.music.stop()
+        pygame.mouse.set_visible(True)
+
     def _check_events(self):
         """Respond to keyboard and mouse events."""
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-
                 sys.exit()
             elif event.type == pygame.KEYDOWN:
                 self._check_keydown_events(event)
@@ -207,7 +209,6 @@ class AlienInvasion:
     def _ship_hit(self):
         """Respond to aliens hitting the ship."""
         ship_hit_sound_effect = pygame.mixer.Sound('sounds/ship-explosion.wav')
-        last_ship_hit_sound_effect = pygame.mixer.Sound('sounds/game-over.wav')
         if self.stats.ships_left > 0:
             self.stats.ships_left -= 1
             ship_hit_sound_effect.play()
@@ -222,10 +223,7 @@ class AlienInvasion:
 
             sleep(0.5)
         else:
-            last_ship_hit_sound_effect.play()
-            self.stats.game_active = False
-            pygame.mixer.music.stop()
-            pygame.mouse.set_visible(True)
+            self.end_game()
 
     def _update_screen(self):
         """Update the screen."""

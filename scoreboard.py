@@ -19,7 +19,7 @@ class Scoreboard:
         self.new_high_score_set = False
 
         self.text_color = (233, 233, 233)
-        self.font = pygame.font.SysFont(None, 24)
+        self.font = pygame.font.SysFont("Noto Sans Mono", 16)
 
         self.prep_images()
 
